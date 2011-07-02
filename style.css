@@ -217,7 +217,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
   padding: 0;
   border: 0 none;
   height: auto;
-  max-width: 640px;
+  max-width: 90%;
   width: auto;
 }
 .wp-caption-dd {
@@ -387,14 +387,20 @@ article {
 
 }
 
-.xoxo > li > ul {
-  padding: 10px;
-  margin: 0;
-  list-style-type: none;
+.widget_tag_cloud {
+    padding: 5px;
+}
+
+.xoxo > li ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.xoxo > li ul li {
+    margin: 2px 0;
 }
 
 .xoxo > li > div {
-  padding: 10px;
+
 }
 
 /**

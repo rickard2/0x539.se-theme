@@ -388,18 +388,44 @@ article {
 }
 
 .xoxo > li > ul {
-  margin: 10px;
+  padding: 10px;
+  margin: 0;
   list-style-type: none;
+}
+
+.xoxo > li > div {
+  padding: 10px;
 }
 
 /**
  *   Typography
  */
 
+#content > h1 {
+  font-family: arial,sans-serif;
+  font-size: 20px;
+  letter-spacing: -1pt;
+  word-spacing: 3pt;
+  line-height: 1.5;
+  color: #444;
+  text-shadow: #CCC 1px 1px 1px;
+  text-align: center;
+}
+
 .entry-meta {
   border-bottom: solid 1px #FFC64A;
   padding-bottom: 10px;
   margin-bottom: 10px;
+}
+
+.entry-utility {
+  border: 1px solid #ddd;
+  background-color: #f3f3f3;
+  padding: 10px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 article h1, .entry-title {
@@ -410,6 +436,8 @@ article h1, .entry-title {
   line-height: 1.2;
   border-bottom: solid 4px #FFC64A;
   margin-bottom: 10px;
+  text-shadow: #CCC 1px 1px 1px;
+  color: #444;
 }
 .entry-title a {
     color: #444;
@@ -436,20 +464,23 @@ article h1, .entry-title {
   font-size: 1.2em;  
 }
 
-.entry-content h3 {
+.entry-content h3, .entry-content h2 {
   font-family: arial,sans-serif;
   font-size: 25px;
   word-spacing: 3pt;
   border-bottom: solid 1px #ccc;
+  text-shadow: #CCC 1px 1px 1px;
 }
 .entry-content h4 {
   font-family: arial,sans-serif;
   font-size: 20px;
   word-spacing: 3pt;
+  text-shadow: #CCC 1px 1px 1px;
 }
 .entry-content h5 {
   font-family: arial,sans-serif;
   font-size: 18px;
+  text-shadow: #CCC 1px 1px 1px;
 }
 
 

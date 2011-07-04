@@ -1,5 +1,3 @@
-@import url('//fonts.googleapis.com/css?family=Indie+Flower&v1');
-
 /*
 	Theme Name: 0x539.se
 	Theme URI: http://0x539.se
@@ -212,6 +210,10 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
   max-width: 660px;
   width: auto;  
 }
+.entry-content img {
+	max-width: 100%;
+	height: auto;
+}
 .wp-caption img {
   margin: 10px;
   padding: 0;
@@ -378,14 +380,9 @@ article {
   background-image:    -moz-linear-gradient(top, #FFD985, #FFC64A); 
   background-image:     -ms-linear-gradient(top, #FFD985, #FFC64A); 
   background-image:      -o-linear-gradient(top, #FFD985, #FFC64A); 
-  background-image:         linear-gradient(top, #FFD985, #FFC64A);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFD985', EndColorStr='#FFC64A'); 
-
+  background-image:         linear-gradient(top, #FFD985, #FFC64A); 
 }
 
-.xoxo > li {
-
-}
 
 .widget_tag_cloud {
     padding: 5px;
@@ -399,9 +396,6 @@ article {
     margin: 2px 0;
 }
 
-.xoxo > li > div {
-
-}
 
 /**
  *   Typography
@@ -432,6 +426,20 @@ article {
   -khtml-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+}
+
+#compatibility-message {
+  border: 1px solid #ddd;
+  background-color: #f3f3f3;
+  padding: 10px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  width: 500px;
+  margin: auto;
+  margin-top: 25px;
+  display: none;
 }
 
 article h1, .entry-title {
@@ -489,6 +497,48 @@ article h1, .entry-title {
   text-shadow: #CCC 1px 1px 1px;
 }
 
+
+/**
+ * 	Social widget
+ */
+
+.social {
+	padding: 5px 0px 5px 5px;
+}
+.social img {
+	margin-right: 6px;
+	opacity: 0.5;
+	
+     -moz-transition: opacity 0.1s linear;
+       -o-transition: opacity 0.1s linear;
+  -webkit-transition: opacity 0.1s linear;
+      -ms-transition: opacity 0.1s linear;
+   -khtml-transition: opacity 0.1s linear;
+          transition: opacity 0.1s linear;  
+}
+.social:hover img {
+	opacity: 1;
+}
+.social img:hover {
+   -webkit-transform: scale(1.1);
+
+     -moz-transform: scale(1.1);  
+       -o-transform: scale(1.1);  
+  -webkit-transform: scale(1.1);  
+      -ms-transform: scale(1.1);
+   -khtml-transform: scale(1.1);
+          transform: scale(1.1);  
+   
+               zoom: 1;	
+}
+
+/**
+ * 	Old browser error msg
+ */
+
+#compatibility-problems {
+	padding: 10px 0;
+}
 
 /**
  * Non-semantic helper classes: please define your styles before this section.

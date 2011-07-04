@@ -44,6 +44,13 @@
 	</head>
 	<body <?php body_class(); ?>>
 	  <div class="wrapper">
+	  	<div id="compatibility-message">
+	  	
+	  		<p>Du använder en webbläsare som saknar stöd för följande CSS-tekniker som används på denna webbplats:</p> 
+	  		<ul id="compatibility-problems"></ul>
+	  		<p>För att få bästa upplevelse av denna webbplats, uppdatera din webbläsare. För mer information se <a href="http://browsehappy.com/">browsehappy.com</a>.</p>
+	  		
+	  	</div>
     	<div class="sidebar">
     		<header id="banner" role="banner">
     			<h1><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -53,5 +60,13 @@
     			<?php /* Our navigation menu.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu.  The menu assiged to the primary position is the one used.  If none is assigned, the menu with the lowest ID is used.  */ ?>
     			<?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); ?>
     		</nav><!-- #access -->
+    		<?php
+    		
+		// A second sidebar for widgets, just because.
+		if ( is_active_sidebar( 'secondary-widget-area' ) ) : ?>
+			<ul class="xoxo">
+				<?php dynamic_sidebar( 'secondary-widget-area' ); ?>
+			</ul>
+		<?php endif; ?>
     	</div>
   		<section id="content" role="main">

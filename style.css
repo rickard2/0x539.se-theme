@@ -505,7 +505,7 @@ article h1, .entry-title {
 .social {
 	padding: 5px 0px 5px 5px;
 }
-.social img {
+.social a {
 	margin-right: 6px;
 	opacity: 0.5;
 	
@@ -516,10 +516,10 @@ article h1, .entry-title {
    -khtml-transition: opacity 0.1s linear;
           transition: opacity 0.1s linear;  
 }
-.social:hover img {
+.social:hover a {
 	opacity: 1;
 }
-.social img:hover {
+.social a:hover {
    -webkit-transform: scale(1.1);
 
      -moz-transform: scale(1.1);  
@@ -531,6 +531,19 @@ article h1, .entry-title {
    
                zoom: 1;	
 }
+.social-icon {
+	width: 32px;
+	height: 32px;
+	background-image: url('images/social.png');
+	background-repeat: no-repeat;
+	display: inline-block;
+	text-indent: -9999em;
+}
+.rss-icon { background-position: 0 0; }
+.twitter-icon { background-position: 0 -32px; }
+.facebook-icon { background-position: 0 -64px; }
+.googleplus-icon { background-position: 0 -96px; }
+.google-reader-icon { background-position: 0 -128px; }
 
 /**
  * 	Old browser error msg

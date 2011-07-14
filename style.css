@@ -458,7 +458,7 @@ article h1, .entry-title {
     text-decoration: none;
 }
 
-.entry-content p, .entry-summary p {
+.entry-content p, .entry-summary p, .wp-caption-text {
  font-family: Georgia;
   color: #444;
   text-decoration: none;

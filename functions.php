@@ -208,7 +208,7 @@ function boilerplate_filter_wp_title( $title, $separator ) {
 	}
 
 	// Otherwise, let's start by adding the site name to the end:
-	$title .= get_bloginfo( 'name', 'display' );
+	//$title .= get_bloginfo( 'name', 'display' );
 
 	// If we have a site description and we're on the home/front page, add the description:
 	$site_description = get_bloginfo( 'description', 'display' );
@@ -458,12 +458,12 @@ if ( ! function_exists( 'boilerplate_posted_on' ) ) :
 function boilerplate_posted_on() {
 	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'boilerplate' ),
 		'meta-prep meta-prep-author',
-		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
+		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date published updated" pubdate>%3$s</time></a>',
 			get_permalink(),
 			esc_attr( get_the_time() ),
 			get_the_date()
 		),
-		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
+		sprintf( '<span class="author vcard"><a class="url fn n" rel="author" href="%1$s" title="%2$s">%3$s</a></span>',
 			get_author_posts_url( get_the_author_meta( 'ID' ) ),
 			sprintf( esc_attr__( 'View all posts by %s', 'boilerplate' ), get_the_author() ),
 			get_the_author()
@@ -537,4 +537,24 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' );
 }
 
-?>
+
+
+function compressHTML($html) {
+	
+	// remove new line 
+	$html = str_replace("\r\n", "", $html);
+	$html = str_replace("\n", "", $html);
+	
+	// remove tab
+	$html = str_replace("\t", "", $html);
+	
+	// remove unneccessary whitespace 
+	$html = preg_replace('/(\s){2,}/', ' ', $html);
+	
+	// remove HTML comments
+	$html = preg_replace('/<!--([a-z0-9#\-_\s<>&;.=\/"\'])+-->/i', '', $html);
+	
+	// remove unneccessary quotes
+	return preg_replace('/([a-z]+)=[\'"]([0-9a-z\-_]+)["\']/i', '$1=$2', $html);	
+}
+//ob_start("compressHTML");

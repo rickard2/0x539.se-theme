@@ -21,7 +21,7 @@ get_header(); ?>
 		the_post();
 ?>
 
-				<h1><?php printf( __( 'Author Archives: %s', 'boilerplate' ), "<a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a>" ); ?></h1>
+				<h1><?php printf( __( 'Author Archives: %s', 'boilerplate' ), "<a class='url fn n' href='" . get_the_author_meta( 'user_url' ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a>" ); ?></h1>
 
 <?php
 // If a user has filled out their description, show a bio on their entries.

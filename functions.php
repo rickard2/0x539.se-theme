@@ -78,7 +78,7 @@ function boilerplate_setup() {
 	add_editor_style();
 
 	// Uncomment if you choose to use post thumbnails; add the_post_thumbnail() wherever thumbnail should appear
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// Add default posts and comments RSS feed links to head
 	add_theme_support( 'automatic-feed-links' );
@@ -137,7 +137,7 @@ function boilerplate_setup() {
 	wp_enqueue_script( "modernizr", get_bloginfo('stylesheet_directory') . "/js/modernizr.js", array(), "2.0.6", false );
 	wp_enqueue_script( "0x539-se-script", get_bloginfo('stylesheet_directory') . "/js/script.js", array('jquery', 'modernizr'), "1.0", true );
 	
-	wp_enqueue_style( "indie-flower-font", ($_SERVER['HTTPS'] == "on" ? "https:" : "http:") . "//fonts.googleapis.com/css?family=Indie+Flower&v1", array(), "1", "all" );	
+	wp_enqueue_style( "indie-flower-font", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on" ? "https:" : "http:") . "//fonts.googleapis.com/css?family=Indie+Flower&v1", array(), "1", "all" );	
 }
 endif;
 

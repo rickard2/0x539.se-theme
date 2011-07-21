@@ -10,10 +10,7 @@
 get_header(); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<h1 class="entry-title"><?php the_title(); ?></h1>
-					<div class="entry-meta">
-						<?php boilerplate_posted_on(); ?>
-					</div><!-- .entry-meta -->
+					<h1 class="entry-title"><?php the_title(); ?><?php boilerplate_posted_on() ?></h1>
 					<div class="entry-content">
 
 						<?php if (has_post_thumbnail()) : ?> 
@@ -34,8 +31,7 @@ get_header(); ?>
 					</footer><!-- #entry-author-info -->
 <?php endif; ?>
 					<footer class="entry-utility">
-						<?php boilerplate_posted_in(); ?>
-						<?php edit_post_link( __( 'Edit', 'boilerplate' ), '<span class="edit-link">', '</span>' ); ?>
+						<?php boilerplate_posted_in(); ?>					
 					</footer><!-- .entry-utility -->
 				</article><!-- #post-## -->
 				<nav id="nav-below" class="navigation">

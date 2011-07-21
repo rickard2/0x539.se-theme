@@ -1,19 +1,15 @@
-/** Compressed using cssmin 2011-07-14 14:58 **/
+/** Compressed using cssmin 2011-07-22 01:03 **/
 
 /*
-	Theme Name: 0x539.se
-	Theme URI: http://0x539.se
-	Description: 0x539.se
-	Author: Rickard Andersson
-	Author URI: http://0x539.se
-	Version: 1.0
-	Tags: 1337
-
-	License: GNU General Public License v2.0
-	License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
-	This CSS file is a concatenation of style.css from HTML5 Boilerplate and style.css from Starkers.
-	Comment blocks indicate where each begins and ends, like this, for example...
+Theme Name: 0x539.se
+Theme URI: http://0x539.se
+Description: 0x539.se
+Author: Rickard Andersson
+Author URI: http://0x539.se
+Version: 1.0
+Tags: 1337
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 /** START HTML5 Boilerplate CSS **/
@@ -266,7 +262,12 @@ blockquote {
   -webkit-border-radius: 3px;
   border-radius: 3px;  
 }
-
+.attachment-post-thumbnail {
+	float: left; 
+	margin-right: 10px;
+	max-width: 50% !important;
+	height: auto;
+}
 /**
  *   Outline and layout */
 
@@ -318,6 +319,68 @@ article {
   padding-bottom: 1px;
   line-height: 1.5em;
 }
+aside.license {
+	padding: 10px;
+	text-align: center;
+}
+
+/**
+ * 	Entry meta
+ */
+
+.entry-meta {
+	padding:5px 0;
+	margin: 10px 0;
+	border-top: solid 2px #FFC64A;
+ 	list-style-type: none;
+ 	background-color: rgba(255, 217, 133, 0.4)
+}
+.entry-meta li {
+	float: left;
+	width: 24.5%;
+}
+.entry-meta dt {
+  font-family: arial,sans-serif;
+  font-weight: bold;
+  word-spacing: 3pt;
+  color: #444;
+  text-shadow: #CCC 1px 1px 1px;
+  text-align: center;		
+}
+dd {
+  font-family: arial,sans-serif;
+  color: #444;
+  text-align: center;
+  font-size: 0.9em;	
+}
+.entry-meta dt {
+	font-weight: bold;
+}
+.meta-icon {
+	float:left;
+	opacity: 0.5;
+	margin-left: 15px;
+	width: 40px;
+	height: 40px;
+	background: transparent url('images/meta.png') no-repeat top left;
+}
+.entry-meta img {
+	float: left;
+	margin-left: 15px;
+}
+.icon-tags { background-position: 0px -40px; }
+.icon-comment { background-position: 0 -80px; }
+
+.entry-date {
+	float: right;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	word-spacing: 3pt;
+	color: #444;
+	text-shadow: #CCC 1px 1px 1px;
+	text-align: center;
+}
 
 /**
  *   Menu styles
@@ -325,77 +388,70 @@ article {
 
 
 #access {
-  border: solid 1px #ccc;
-  background-color: rgba(255, 217, 133, 0.4);
+	border: solid 1px #ccc;
+	background-color: rgba(255, 217, 133, 0.4);
 }
-
 .menu > ul > li {
-  padding: 5px;
-  margin: 5px 5px;
+	padding: 5px;
+	margin: 5px 5px;
 }
-
 .menu > ul > li > a {
-  color: #6C4A00;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  text-transform: uppercase;
-  text-decoration: none;
+	color: #6C4A00;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 .children a {
-  color: #6C4A00;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  text-decoration: none;
-  margin-left: 15px;
+	color: #6C4A00;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	margin-left: 15px;
 }
 .menu a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 /**
  *   Sidebar styles
  */
-
 .xoxo {
-  list-style-type: none;
-  margin-left: 0;
+	list-style-type: none;
+	margin-left: 0;
 }
 .xoxo > li {
-  border: solid 1px #ccc;
-  margin: 10px 0;
-  background-color: rgba(255, 217, 133, 0.4);
+	border: solid 1px #ccc;
+	margin: 10px 0;
+	background-color: rgba(255, 217, 133, 0.4);
 }
 .xoxo h3, #access h3 {
-  border-bottom: solid 1px #ccc;
-  color: #00396C;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  text-transform: uppercase;
-  text-shadow: #333 1px 1px 3px;
-  text-decoration: none;
-  font-weight: normal;
-  padding: 5px;
-
-  background-color: #FFD985;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFD985), to(#FFC64A)); 
-  background-image: -webkit-linear-gradient(top, #FFD985, #FFC64A); 
-  background-image:    -moz-linear-gradient(top, #FFD985, #FFC64A); 
-  background-image:     -ms-linear-gradient(top, #FFD985, #FFC64A); 
-  background-image:      -o-linear-gradient(top, #FFD985, #FFC64A); 
-  background-image:         linear-gradient(top, #FFD985, #FFC64A); 
+	border-bottom: solid 1px #ccc;
+	color: #00396C;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	text-shadow: #333 1px 1px 3px;
+	text-decoration: none;
+	font-weight: normal;
+	padding: 5px;
+	background-color: #FFD985;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FFD985), to(#FFC64A));
+	background-image: -webkit-linear-gradient(top, #FFD985, #FFC64A);
+	background-image:    -moz-linear-gradient(top, #FFD985, #FFC64A);
+	background-image:     -ms-linear-gradient(top, #FFD985, #FFC64A);
+	background-image:      -o-linear-gradient(top, #FFD985, #FFC64A);
+	background-image:         linear-gradient(top, #FFD985, #FFC64A);
 }
-
-
 .widget_tag_cloud {
-    padding: 5px;
+	padding: 5px;
 }
-
 .xoxo > li ul {
-    margin-top: 5px;
-    margin-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .xoxo > li ul li {
-    margin: 2px 0;
+	margin: 2px 0;
 }
 
 
@@ -404,99 +460,79 @@ article {
  */
 
 #content > h1 {
-  font-family: arial,sans-serif;
-  font-size: 20px;
-  letter-spacing: -1pt;
-  word-spacing: 3pt;
-  line-height: 1.5;
-  color: #444;
-  text-shadow: #CCC 1px 1px 1px;
-  text-align: center;
+	font-family: arial,sans-serif;
+	font-size: 20px;
+	letter-spacing: -1pt;
+	word-spacing: 3pt;
+	line-height: 1.5;
+	color: #444;
+	text-shadow: #CCC 1px 1px 1px;
+	text-align: center;
 }
-
-.entry-meta {
-  border-bottom: solid 1px #FFC64A;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.entry-utility {
-  border: 1px solid #ddd;
-  background-color: #f3f3f3;
-  padding: 10px;
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-}
-
 #compatibility-message {
-  border: 1px solid #ddd;
-  background-color: #f3f3f3;
-  padding: 10px;
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  width: 500px;
-  margin: auto;
-  margin-top: 25px;
-  display: none;
+	border: 1px solid #ddd;
+	background-color: #f3f3f3;
+	padding: 10px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	width: 500px;
+	margin: auto;
+	margin-top: 25px;
+	display: none;
 }
-
 article h1, .entry-title {
-  font-family: arial,sans-serif;
-  font-size: 30px;
-  letter-spacing: -1pt;
-  word-spacing: 3pt;
-  line-height: 1.2;
-  border-bottom: solid 4px #FFC64A;
-  margin-bottom: 10px;
-  text-shadow: #CCC 1px 1px 1px;
-  color: #444;
+	font-family: arial,sans-serif;
+	font-size: 30px;
+	letter-spacing: -1pt;
+	word-spacing: 3pt;
+	line-height: 1.2;
+	border-bottom: solid 4px #FFC64A;
+	margin-bottom: 10px;
+	text-shadow: #CCC 1px 1px 1px;
+	color: #444;
 }
 .entry-title a {
-    color: #444;
-    text-decoration: none;
+	color: #444;
+	text-decoration: none;
 }
-
 .entry-content p, .entry-summary p, .wp-caption-text {
- font-family: Georgia;
-  color: #444;
-  text-decoration: none;
-  word-spacing: 0.2em;
-  letter-spacing: 0;
-  line-height: 1.6em;
-  font-size: 1.2em;
-  padding-bottom: 1.5em;  
+	font-family: Georgia;
+	color: #444;
+	text-decoration: none;
+	word-spacing: 0.2em;
+	letter-spacing: 0;
+	line-height: 1.6em;
+	font-size: 1.2em;
+	padding-bottom: 1.5em;
 }
 .entry-content li {
- font-family: Georgia;
-  color: #444;
-  word-spacing: 0.2em;
-  text-align: left;
-  letter-spacing: 0;
-  line-height: 1.5em;
-  font-size: 1.2em;  
+	font-family: Georgia;
+	color: #444;
+	word-spacing: 0.2em;
+	text-align: left;
+	letter-spacing: 0;
+	line-height: 1.5em;
+	font-size: 1.2em;
 }
-
 .entry-content h3, .entry-content h2 {
-  font-family: arial,sans-serif;
-  font-size: 25px;
-  word-spacing: 3pt;
-  border-bottom: solid 1px #ccc;
-  text-shadow: #CCC 1px 1px 1px;
+	font-family: arial,sans-serif;
+	font-size: 25px;
+	word-spacing: 3pt;
+	border-bottom: solid 1px #ccc;
+	text-shadow: #CCC 1px 1px 1px;
 }
 .entry-content h4 {
-  font-family: arial,sans-serif;
-  font-size: 20px;
-  word-spacing: 3pt;
-  text-shadow: #CCC 1px 1px 1px;
+	font-family: arial,sans-serif;
+	font-size: 20px;
+	word-spacing: 3pt;
+	text-shadow: #CCC 1px 1px 1px;
 }
 .entry-content h5 {
-  font-family: arial,sans-serif;
-  font-size: 18px;
-  text-shadow: #CCC 1px 1px 1px;
+	font-family: arial,sans-serif;
+	font-size: 18px;
+	text-shadow: #CCC 1px 1px 1px;
 }
 
 

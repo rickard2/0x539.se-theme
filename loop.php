@@ -60,8 +60,8 @@
 			<div class="entry-content">
 <?php if ( post_password_required() ) : ?>
 				<?php the_content(); ?>
-<?php else : ?>			
-				<?php 
+<?php else : ?>
+				<?php
 					$images = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'orderby' => 'menu_order', 'order' => 'ASC', 'numberposts' => 999 ) );
 					if ( $images ) :
 						$total_images = count( $images );
@@ -127,6 +127,10 @@
 			</div><!-- .entry-summary -->
 	<?php else : ?>
 			<div class="entry-content">
+				<?php if (has_post_thumbnail()) : ?> 
+					<?php the_post_thumbnail(); ?> 
+				<?php endif; ?> 
+
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?>
 				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'boilerplate' ), 'after' => '</div>' ) ); ?>
 			</div><!-- .entry-content -->

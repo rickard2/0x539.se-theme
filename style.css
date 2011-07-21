@@ -324,12 +324,8 @@ article {
   line-height: 1.5em;
 }
 aside.license {
-	display: none;
 	padding: 10px;
 	text-align: center;
-}
-.single aside.license {
-	display: block;
 }
 
 /**

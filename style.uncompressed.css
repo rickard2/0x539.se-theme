@@ -1,4 +1,4 @@
-/** Compressed using cssmin 2011-07-22 01:03 **/
+/** Compressed using cssmin 2011-07-22 01:20 **/
 
 /*
 Theme Name: 0x539.se
@@ -297,6 +297,9 @@ article {
   padding-top: 20px;
   padding-bottom: 50px;
 }
+.single article {
+	padding-bottom: 0;
+}
 
 #banner h1 {
   font-family: 'Indie Flower';
@@ -359,14 +362,14 @@ dd {
 .meta-icon {
 	float:left;
 	opacity: 0.5;
-	margin-left: 15px;
+	margin-left: 10px;
 	width: 40px;
 	height: 40px;
 	background: transparent url('images/meta.png') no-repeat top left;
 }
 .entry-meta img {
 	float: left;
-	margin-left: 15px;
+	margin-left: 10px;
 }
 .icon-tags { background-position: 0px -40px; }
 .icon-comment { background-position: 0 -80px; }

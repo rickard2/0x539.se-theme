@@ -113,7 +113,7 @@ function boilerplate_setup() {
 	// We'll be using post thumbnails for custom header images on posts and pages.
 	// We want them to be 940 pixels wide by 198 pixels tall.
 	// Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
-	set_post_thumbnail_size( HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true );
+	set_post_thumbnail_size( 330, 250, false );
 
 	// Don't support text inside the header image.
 	define( 'NO_HEADER_TEXT', true );

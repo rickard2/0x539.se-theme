@@ -15,6 +15,11 @@ get_header(); ?>
 						<?php boilerplate_posted_on(); ?>
 					</div><!-- .entry-meta -->
 					<div class="entry-content">
+
+						<?php if (has_post_thumbnail()) : ?> 
+							<?php the_post_thumbnail(); ?> 
+						<?php endif; ?> 
+
 						<?php the_content(); ?>
 						<?php wp_link_pages( array( 'before' => '' . __( 'Pages:', 'boilerplate' ), 'after' => '' ) ); ?>
 					</div><!-- .entry-content -->

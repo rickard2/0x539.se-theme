@@ -26,7 +26,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * - praegnanz.de/weblog/htmlcssjs-kickstart
  */
 
-
 /**
  * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
  * v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
@@ -208,7 +207,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
   max-width: 640px;
   width: auto;  
 }
-.entry-content img {
+.entry-content img, .wp-caption {
 	max-width: 100%;
 	height: auto;
 }

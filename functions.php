@@ -578,3 +578,12 @@ function compressHTML($html) {
 	return preg_replace('/([a-z]+)=[\'"]([0-9a-z\-_]+)["\']/i', '$1=$2', $html);	
 }
 //ob_start("compressHTML");
+
+
+function twittify( $data , $postarr ) {
+	$ret = $data['post_content'];
+	$ret = preg_replace("#(^|[\n ])@([^ \"\t\n\r<]*)#ise", "'\\1<a href=\"http://www.twitter.com/\\2\" >@\\2</a>'", $ret);
+	$data['post_content'] = $ret;
+	return $data;
+}
+add_filter( 'wp_insert_post_data' , 'twittify' , '99' );

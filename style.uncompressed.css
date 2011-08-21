@@ -1,4 +1,4 @@
-/** Compressed using cssmin 2011-07-22 01:20 **/
+/** Compressed using cssmin 2011-08-21 21:30 **/
 
 /*
 Theme Name: 0x539.se
@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /** START HTML5 Boilerplate CSS **/
 
 /**
- * HTML5 âœ° Boilerplate
+ * HTML5 â.° Boilerplate
  *
  * style.css contains a reset, font normalization and some base styles.
  *
@@ -25,7 +25,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * - camendesign.com/design/
  * - praegnanz.de/weblog/htmlcssjs-kickstart
  */
-
 
 /**
  * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
@@ -208,7 +207,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
   max-width: 640px;
   width: auto;  
 }
-.entry-content img {
+.entry-content img, .wp-caption {
 	max-width: 100%;
 	height: auto;
 }
@@ -500,7 +499,7 @@ article h1, .entry-title {
 	color: #444;
 	text-decoration: none;
 }
-.entry-content p, .entry-summary p, .wp-caption-text {
+.entry-content p, .entry-summary p, .wp-caption-text, .entry-content ul, .entry-content ol {
 	font-family: Georgia;
 	color: #444;
 	text-decoration: none;
@@ -510,6 +509,38 @@ article h1, .entry-title {
 	font-size: 1.2em;
 	padding-bottom: 1.5em;
 }
+.entry-content table {
+        margin-bottom: 1.5em;
+        border: 1px solid #ccc;
+        text-align: left;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        cursor: default;
+}
+.entry-content th {
+        border: none !important;
+        color: #444;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        word-spacing: 0.2em;
+        letter-spacing: 0;
+        line-height: 1.6em;
+        font-size: 1em;
+        padding: 0.7em 2em;
+	background-color: #eee;
+}
+.entry-content td {
+        border: none;
+        border-top: 1px solid #ccc;
+        padding: 0.7em 2em;
+        font-family: Arial, sans-serif;
+        color: #444;
+        word-spacing: 0.2em;
+        letter-spacing: 0;
+        line-height: 1.6em;
+        font-size: 1em;
+}
 .entry-content li {
 	font-family: Georgia;
 	color: #444;
@@ -517,7 +548,6 @@ article h1, .entry-title {
 	text-align: left;
 	letter-spacing: 0;
 	line-height: 1.5em;
-	font-size: 1.2em;
 }
 .entry-content h3, .entry-content h2 {
 	font-family: arial,sans-serif;
@@ -630,16 +660,66 @@ article h1, .entry-title {
  * The closing /mediaquery comment is required by respond.js min/max-width Media Query polyfill
  */
 
-@media only screen and (min-width: 480px) {
-  /* Style adjustments for viewports 480px and over go here */
+@media only screen and (max-width: 480px) {
+	.meta-icon, .entry-meta img {
+		display: none;
+	}
+}
 
-}/*/mediaquery*/
+@media only screen and (max-width: 768px) {
+ 	.sidebar {
+		float: none;
+		width: auto;
+		padding: 0;
+	}
+	#banner {
+		display: none;
+	}
+	.wrapper, #compatibility-message {
+		width: auto;
+	} 
+	#content {
+		width: auto;
+		padding: 0 10px;
+	}
+	#access {
+		background-color: transparent;
+		border: none;
+	}
+	#access h3, .xoxo {
+		display: none;
+	}
+	.menu > ul > li {
+		padding: 2px;
+		margin: 2px;
+		display: inline-block;
+		background-color: rgba(255, 217, 133, 0.4);
+		border: solid 1px #ccc;
+		-webkit-border-radius: 7px;
+	}
+	.menu .children {
+		display: none;
+	}
+	.current_page_item .children {
+		display: block;
+	}
+	.menu {
+		padding: 5px;
+	}
+	img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+	object, iframe {
+		display: none;
+	}
+}
 
-@media only screen and (min-width: 768px) {
-  /* Style adjustments for viewports 768px and over go here */
-
-}/*/mediaquery*/
-
+@media only screen and (max-width: 920px) {
+	aside.sidebar {
+		display: none;
+	}
+}
 
 
 /**
@@ -683,5 +763,4 @@ li#theme-switcher { background:#fff; border:10px solid red; padding:20px; positi
 
 h1, h2, h3, h4, h5, h6 { font-weight:bold } /* This helps to identify headings at the initial build stage, so I thought it'd be useful to have it */
 .alert { background:red; color:white } /* 'alert' has a basic style, since it's useful to have it standing out for testing purposes.
-
 

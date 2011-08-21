@@ -139,7 +139,7 @@ function boilerplate_setup() {
 		wp_enqueue_script( "modernizr", get_bloginfo('stylesheet_directory') . "/js/modernizr.js", array(), "2.0.6", false );
 		wp_enqueue_script( "0x539-se-script", get_bloginfo('stylesheet_directory') . "/js/script.js", array('jquery', 'modernizr'), "1.0", true );
 		
-		wp_enqueue_style( "0x539.se", get_bloginfo("stylesheet_url"), array(), "1", "all");
+		wp_enqueue_style( "0x539.se", get_bloginfo("stylesheet_url"), array(), "2", "all");
 		wp_enqueue_style( "indie-flower-font", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on" ? "https:" : "http:") . "//fonts.googleapis.com/css?family=Indie+Flower&v1", array("0x539.se"), "1", "all" );	
 	}
 }

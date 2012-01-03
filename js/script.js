@@ -1,2 +1,71 @@
-(function(b,c){var a=[];b.textshadow||a.push("CSS3 text-shadow, ger skugga \u00e5t vissa titlar/\u00f6verskrifter");b.rgba||a.push("CSS3 rgba(), anv\u00e4nds f\u00f6r alfatransparent f\u00e4rgs\u00e4ttning");b.cssgradients||a.push("CSS3 gradients, anv\u00e4nds f\u00f6r vissa bakgrundsf\u00e4rger");b.borderradius||a.push("CSS3 border-radius, anv\u00e4nds f\u00f6r rundade h\u00f6rn");b.csstransforms||a.push("CSS3 transforms, anv\u00e4nds f\u00f6r att ge vissa grafiska effekter");b.csstransitions||a.push("CSS3 transitions, anv\u00e4nds f\u00f6r att ge snyggare \u00f6verg\u00e5ngar i grafiska effekter");
-a.length>0&&(c("#compatibility-problems").append("<li>"+a.join("</li><li>")+"</li>"),c("#compatibility-message").show())})(Modernizr,jQuery);
+/* Author: 
+
+*/
+
+
+(function($, w, wl) {
+
+	// The #main DOM object
+	var main = document.getElementById("main");
+
+	// Loads the URL from the server using an AJAX request
+	// url: string
+	// TODO: Cache
+	// TODO: error handling
+	function asyncLoad(url) {
+
+		$.ajax(url, {
+			error: function(jqXHR, textStatus, errorThrown) {
+
+				main.innerHTML = '';
+				main.className = '';
+
+			}, success: function (data, textStatus, jqXHR) {
+
+				// Set the returned content as innerHTML of #main and remove loading class
+				main.innerHTML = data;
+				main.className = '';
+
+				// Push the new url to the history URL stack
+				w.history.pushState(null, null, url);
+			}
+		});
+
+		// Add loading class to #main
+		main.className = 'loading';
+	}
+
+
+	// When clicking internal links (links with the same origin) load them asynchronously
+	// using asyncLoad()
+	$("a[href^='" + wl.origin  + "']").live('click', function(e) {
+
+		asyncLoad( this.href );
+
+		e.preventDefault();
+		return false;
+	});
+
+	// When the user navigates back in the browser, load the previous URL using asyncLoad
+	// TODO: Exclude popstate events on initial page load
+	w.onpopstate = function() { asyncLoad( wl.href ); };
+
+})(jQuery, window, window.location);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

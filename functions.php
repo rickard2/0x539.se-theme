@@ -1,589 +1,88 @@
-<?php
-/**
- * Boilerplate functions and definitions
- *
- * Sets up the theme and provides some helper functions. Some helper functions
- * are used in the theme as custom template tags. Others are attached to action and
- * filter hooks in WordPress to change core functionality.
- *
- * The first function, boilerplate_setup(), sets up the theme by registering support
- * for various features in WordPress, such as post thumbnails, navigation menus, and the like.
- *
- * When using a child theme (see http://codex.wordpress.org/Theme_Development and
- * http://codex.wordpress.org/Child_Themes), you can override certain functions
- * (those wrapped in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before the parent
- * theme's file, so the child theme functions would be used.
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
- * to a filter or action hook. The hook can be removed by using remove_action() or
- * remove_filter() and you can attach your own function to the hook.
- *
- * We can remove the parent theme's hook only after it is attached, which means we need to
- * wait until setting up the child theme:
- *
- * <code>
- * add_action( 'after_setup_theme', 'my_child_theme_setup' );
- * function my_child_theme_setup() {
- *     // We are providing our own filter for excerpt_length (or using the unfiltered value)
- *     remove_filter( 'excerpt_length', 'boilerplate_excerpt_length' );
- *     ...
- * }
- * </code>
- *
- * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
- *
- * @package WordPress
- * @subpackage Boilerplate
- * @since Boilerplate 1.0
- */
+<?php 
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- *
- * Used to set the width of images and content. Should be equal to the width the theme
- * is designed for, generally via the style.css stylesheet.
- */
-if ( ! isset( $content_width ) )
-	$content_width = 640;
 
-/** Tell WordPress to run boilerplate_setup() when the 'after_setup_theme' hook is run. */
-add_action( 'after_setup_theme', 'boilerplate_setup' );
-
-if ( ! function_exists( 'boilerplate_setup' ) ):
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which runs
- * before the init hook. The init hook is too late for some features, such as indicating
- * support post thumbnails.
- *
- * To override boilerplate_setup() in a child theme, add your own boilerplate_setup to your child theme's
- * functions.php file.
- *
- * @uses add_theme_support() To add support for post thumbnails and automatic feed links.
- * @uses register_nav_menus() To add support for navigation menus.
- * @uses add_custom_background() To add support for a custom background.
- * @uses add_editor_style() To style the visual editor.
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_custom_image_header() To add support for a custom header.
- * @uses register_default_headers() To register the default custom header images provided with the theme.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_setup() {
-
-	// This theme styles the visual editor with editor-style.css to match the theme style.
-	add_editor_style();
-
-	// Uncomment if you choose to use post thumbnails; add the_post_thumbnail() wherever thumbnail should appear
-	add_theme_support( 'post-thumbnails' );
-
-	// Add default posts and comments RSS feed links to head
-	add_theme_support( 'automatic-feed-links' );
-
-	// Make theme available for translation
-	// Translations can be filed in the /languages/ directory
-	load_theme_textdomain( 'boilerplate', TEMPLATEPATH . '/languages' );
-
-	$locale = get_locale();
-	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
-	if ( is_readable( $locale_file ) )
-		require_once( $locale_file );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Navigation', 'boilerplate' ),
-	) );
-
-	// This theme allows users to set a custom background
-	add_custom_background();
-
-	// Your changeable header business starts here
-	define( 'HEADER_TEXTCOLOR', '' );
-	// No CSS, just IMG call. The %s is a placeholder for the theme template directory URI.
-	define( 'HEADER_IMAGE', '%s/images/headers/path.jpg' );
-
-	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
-	// Add a filter to boilerplate_header_image_width and boilerplate_header_image_height to change these values.
-	define( 'HEADER_IMAGE_WIDTH', apply_filters( 'boilerplate_header_image_width', 940 ) );
-	define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'boilerplate_header_image_height', 198 ) );
-
-	// We'll be using post thumbnails for custom header images on posts and pages.
-	// We want them to be 940 pixels wide by 198 pixels tall.
-	// Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
-	set_post_thumbnail_size( 330, 250, false );
-
-	// Don't support text inside the header image.
-	define( 'NO_HEADER_TEXT', true );
-
-	// Add a way for the custom header to be styled in the admin panel that controls
-	// custom headers. See boilerplate_admin_header_style(), below.
-	add_custom_image_header( '', 'boilerplate_admin_header_style' );
-
-	// ... and thus ends the changeable header business.
-
-	// Default custom headers packaged with the theme. %s is a placeholder for the theme template directory URI.
-	register_default_headers( array(
-		'berries' => array(
-			'url' => '%s/images/headers/starkers.png',
-			'thumbnail_url' => '%s/images/headers/starkers-thumbnail.png',
-			/* translators: header image description */
-			'description' => __( 'Boilerplate', 'boilerplate' )
-		)
-	) );
-
-	if (!is_admin()) { 
+class zerox539se {
 	
-		wp_enqueue_script( "modernizr", get_bloginfo('stylesheet_directory') . "/js/modernizr.js", array(), "2.0.6", false );
-		wp_enqueue_script( "0x539-se-script", get_bloginfo('stylesheet_directory') . "/js/script.js", array('jquery', 'modernizr'), "1.0", true );
+	private $plugin_name = "0x539se";
+
+	function __construct() {
+		$this->init_assets();
+		$this->init_sidebars();
+	}
+	
+	private function init_sidebars() {
 		
-		wp_enqueue_style( "0x539.se", get_bloginfo("stylesheet_url"), array(), "2", "all");
-		wp_enqueue_style( "indie-flower-font", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on" ? "https:" : "http:") . "//fonts.googleapis.com/css?family=Indie+Flower&v1", array("0x539.se"), "1", "all" );	
+		register_sidebar( array(
+			'name' => 'Header', 
+			'id' => 'sidebar-header',
+			'description' => 'Header',
+			'before_widget' => '<section>',
+			'after_widget' => '</section>',
+			'before_title' => '<h1 class="widgettitle">',
+			'after_title' => '</h1>'
+		) );
+		
+		register_sidebar( array(
+			'name' => 'Sidebar', 
+			'id' => 'sidebar-main',
+			'description' => 'Sidebar',
+			'before_widget' => '<section>',
+			'after_widget' => '</section>',
+			'before_title' => '<h1 class="widgettitle">',
+			'after_title' => '</h1>'
+		) );	
+		
 	}
-}
-endif;
-
-if ( ! function_exists( 'boilerplate_admin_header_style' ) ) :
-/**
- * Styles the header image displayed on the Appearance > Header admin panel.
- *
- * Referenced via add_custom_image_header() in boilerplate_setup().
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_admin_header_style() {
-?>
-<style type="text/css">
-/* Shows the same border as on front end */
-#headimg {
-	border-bottom: 1px solid #000;
-	border-top: 4px solid #000;
-}
-/* If NO_HEADER_TEXT is false, you would style the text with these selectors:
-	#headimg #name { }
-	#headimg #desc { }
-*/
-</style>
-<?php
-}
-endif;
-
-/**
- * Makes some changes to the <title> tag, by filtering the output of wp_title().
- *
- * If we have a site description and we're viewing the home page or a blog posts
- * page (when using a static front page), then we will add the site description.
- *
- * If we're viewing a search result, then we're going to recreate the title entirely.
- * We're going to add page numbers to all titles as well, to the middle of a search
- * result title and the end of all other titles.
- *
- * The site title also gets added to all titles.
- *
- * @since Twenty Ten 1.0
- *
- * @param string $title Title generated by wp_title()
- * @param string $separator The separator passed to wp_title(). Twenty Ten uses a
- * 	vertical bar, "|", as a separator in header.php.
- * @return string The new title, ready for the <title> tag.
- */
-function boilerplate_filter_wp_title( $title, $separator ) {
-	// Don't affect wp_title() calls in feeds.
-	if ( is_feed() )
-		return $title;
-
-	// The $paged global variable contains the page number of a listing of posts.
-	// The $page global variable contains the page number of a single post that is paged.
-	// We'll display whichever one applies, if we're not looking at the first page.
-	global $paged, $page;
-
-	if ( is_search() ) {
-		// If we're a search, let's start over:
-		$title = sprintf( __( 'Search results for %s', 'boilerplate' ), '"' . get_search_query() . '"' );
-		// Add a page number if we're on page 2 or more:
-		if ( $paged >= 2 )
-			$title .= " $separator " . sprintf( __( 'Page %s', 'boilerplate' ), $paged );
-		// Add the site name to the end:
-		$title .= " $separator " . get_bloginfo( 'name', 'display' );
-		// We're done. Let's send the new title back to wp_title():
-		return $title;
-	}
-
-	// Otherwise, let's start by adding the site name to the end:
-	//$title .= get_bloginfo( 'name', 'display' );
-
-	// If we have a site description and we're on the home/front page, add the description:
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title .= " $separator " . $site_description;
-
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		$title .= " $separator " . sprintf( __( 'Page %s', 'boilerplate' ), max( $paged, $page ) );
-
-	// Return the new title to wp_title():
-	return $title;
-}
-add_filter( 'wp_title', 'boilerplate_filter_wp_title', 10, 2 );
-
-/**
- * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
- *
- * To override this in a child theme, remove the filter and optionally add
- * your own function tied to the wp_page_menu_args filter hook.
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_page_menu_args( $args ) {
-	$args['show_home'] = true;
-	return $args;
-}
-add_filter( 'wp_page_menu_args', 'boilerplate_page_menu_args' );
-
-/**
- * Sets the post excerpt length to 40 characters.
- *
- * To override this length in a child theme, remove the filter and add your own
- * function tied to the excerpt_length filter hook.
- *
- * @since Twenty Ten 1.0
- * @return int
- */
-function boilerplate_excerpt_length( $length ) {
-	return 40;
-}
-add_filter( 'excerpt_length', 'boilerplate_excerpt_length' );
-
-/**
- * Returns a "Continue Reading" link for excerpts
- *
- * @since Twenty Ten 1.0
- * @return string "Continue Reading" link
- */
-function boilerplate_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'boilerplate' ) . '</a>';
-}
-
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and boilerplate_continue_reading_link().
- *
- * To override this in a child theme, remove the filter and add your own
- * function tied to the excerpt_more filter hook.
- *
- * @since Twenty Ten 1.0
- * @return string An ellipsis
- */
-function boilerplate_auto_excerpt_more( $more ) {
-	return ' &hellip;' . boilerplate_continue_reading_link();
-}
-add_filter( 'excerpt_more', 'boilerplate_auto_excerpt_more' );
-
-/**
- * Adds a pretty "Continue Reading" link to custom post excerpts.
- *
- * To override this link in a child theme, remove the filter and add your own
- * function tied to the get_the_excerpt filter hook.
- *
- * @since Twenty Ten 1.0
- * @return string Excerpt with a pretty "Continue Reading" link
- */
-function boilerplate_custom_excerpt_more( $output ) {
-	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= boilerplate_continue_reading_link();
-	}
-	return $output;
-}
-add_filter( 'get_the_excerpt', 'boilerplate_custom_excerpt_more' );
-
-/**
- * Remove inline styles printed when the gallery shortcode is used.
- *
- * Galleries are styled by the theme in Twenty Ten's style.css.
- *
- * @since Twenty Ten 1.0
- * @return string The gallery style filter, with the styles themselves removed.
- */
-function boilerplate_remove_gallery_css( $css ) {
-	return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );
-}
-add_filter( 'gallery_style', 'boilerplate_remove_gallery_css' );
-
-if ( ! function_exists( 'boilerplate_comment' ) ) :
-/**
- * Template for comments and pingbacks.
- *
- * To override this walker in a child theme without modifying the comments template
- * simply create your own boilerplate_comment(), and that function will be used instead.
- *
- * Used as a callback by wp_list_comments() for displaying the comments.
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case '' :
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-		<article id="comment-<?php comment_ID(); ?>">
-			<div class="comment-author vcard">
-				<?php echo get_avatar( $comment, 40 ); ?>
-				<?php printf( __( '%s <span class="says">says:</span>', 'boilerplate' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-			</div><!-- .comment-author .vcard -->
-			<?php if ( $comment->comment_approved == '0' ) : ?>
-				<em><?php _e( 'Your comment is awaiting moderation.', 'boilerplate' ); ?></em>
-				<br />
-			<?php endif; ?>
-			<footer class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-				<?php
-					/* translators: 1: date, 2: time */
-					printf( __( '%1$s at %2$s', 'boilerplate' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'boilerplate' ), ' ' );
-				?>
-			</footer><!-- .comment-meta .commentmetadata -->
-			<div class="comment-body"><?php comment_text(); ?></div>
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-##  -->
-	<?php
-			break;
-		case 'pingback'  :
-		case 'trackback' :
-	?>
-	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'boilerplate' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __('(Edit)', 'boilerplate'), ' ' ); ?></p>
-	<?php
-			break;
-	endswitch;
-}
-endif;
-
-/**
- * Register widgetized areas, including two sidebars and four widget-ready columns in the footer.
- *
- * To override boilerplate_widgets_init() in a child theme, remove the action hook and add your own
- * function tied to the init hook.
- *
- * @since Twenty Ten 1.0
- * @uses register_sidebar
- */
-function boilerplate_widgets_init() {
-	// Area 1, located at the top of the sidebar.
-	register_sidebar( array(
-		'name' => __( 'Primary Widget Area', 'boilerplate' ),
-		'id' => 'primary-widget-area',
-		'description' => __( 'The primary widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	// Area 2, located below the Primary Widget Area in the sidebar. Empty by default.
-	register_sidebar( array(
-		'name' => __( 'Secondary Widget Area', 'boilerplate' ),
-		'id' => 'secondary-widget-area',
-		'description' => __( 'The secondary widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	// Area 3, located in the footer. Empty by default.
-	register_sidebar( array(
-		'name' => __( 'First Footer Widget Area', 'boilerplate' ),
-		'id' => 'first-footer-widget-area',
-		'description' => __( 'The first footer widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	// Area 4, located in the footer. Empty by default.
-	register_sidebar( array(
-		'name' => __( 'Second Footer Widget Area', 'boilerplate' ),
-		'id' => 'second-footer-widget-area',
-		'description' => __( 'The second footer widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	// Area 5, located in the footer. Empty by default.
-	register_sidebar( array(
-		'name' => __( 'Third Footer Widget Area', 'boilerplate' ),
-		'id' => 'third-footer-widget-area',
-		'description' => __( 'The third footer widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	// Area 6, located in the footer. Empty by default.
-	register_sidebar( array(
-		'name' => __( 'Fourth Footer Widget Area', 'boilerplate' ),
-		'id' => 'fourth-footer-widget-area',
-		'description' => __( 'The fourth footer widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-}
-/** Register sidebars by running boilerplate_widgets_init() on the widgets_init hook. */
-add_action( 'widgets_init', 'boilerplate_widgets_init' );
-
-/**
- * Removes the default styles that are packaged with the Recent Comments widget.
- *
- * To override this in a child theme, remove the filter and optionally add your own
- * function tied to the widgets_init action hook.
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_remove_recent_comments_style() {
-	global $wp_widget_factory;
-	remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
-}
-add_action( 'widgets_init', 'boilerplate_remove_recent_comments_style' );
-
-if ( ! function_exists( 'boilerplate_posted_on' ) ) :
-/**
- * Prints HTML with meta information for the current post—date/time and author.
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_posted_on() {
-	?>
-	 <time class="entry-date published updated" pubdate datetime="<?php echo date("Y-m-d", strtotime(get_the_date())) ?>"><?php echo date("M jS", strtotime(get_the_date())) ?><br><?php echo date("Y", strtotime(get_the_date()))?></time>
-	<?php 
-}
-endif;
-
-if ( ! function_exists( 'boilerplate_posted_in' ) ) :
-/**
- * Prints HTML with meta information for the current post (category, tags and permalink).
- *
- * @since Twenty Ten 1.0
- */
-function boilerplate_posted_in() {
-	?>
 	
-	<ul class="entry-meta">
-<!--		<li class="entry-date">
-			<dl> 
-				<dt>Published</dt>
-				<dd><time class="entry-date published updated" pubdate><?php echo get_the_date() ?> <?php echo esc_attr( get_the_time() ) ?></time></dd>
-				
-			</dl>
-			 
-			 <time class="published updated" pubdate datetime="<?php echo date("Y-m-d", strtotime(get_the_date())) ?>"><?php echo date("F d", strtotime(get_the_date())) ?><br><?php echo date("Y", strtotime(get_the_date()))?></time>
-		</li>-->
-		<li><?php echo get_avatar( get_the_author_meta('user_email'), 40 ) ?>
-			<dl>
-				<dt>Author</dt>
-				<dd class="author vcard">
-					<a class="url fn n" rel="author" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) )?>" title="<?php echo sprintf( esc_attr__( 'View all posts by %s', 'boilerplate' ), get_the_author() )?>">
-						<?php echo get_the_author() ?>
-					</a>
-				</dd>
-			</dl>
-		</li>
-		<li><div class="meta-icon icon-folder"></div>
-			<dl>
-				<dt>Category</dt>
-				<dd><?php echo get_the_category_list( ', ' ) ?>&nbsp;</dd>
-			</dl>
-		</li>
-		<li><div class="meta-icon icon-tags"></div>
-			<dl>
-				<dt>Tags</dt>
-				<dd><?php echo get_the_tag_list( '', ', ' );?>&nbsp;</dd>
-			</dl>	
-		</li>
-		<li><div class="meta-icon icon-comment"></div>
-			<dl>
-				<dt>Comments</dt>
-				<dd><?php comments_popup_link() ?></dd>
-			</dl>
-		</li>
-		<li style="clear:both;float:none;"></li>
-	</ul>
-	<?php 
-}
-endif;
+	private function init_assets() {
+		
+		// Only enqueue files on the public part of the page 
+		if ( !is_admin() ) {
+			
+			$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on" ? "https" : "http";
+			
+			wp_enqueue_style($this->plugin_name . '-style', get_bloginfo( 'stylesheet_directory') . "/style.css");
 
-/*	Begin Boilerplate */
-	// Add Admin
-		require_once(TEMPLATEPATH . '/boilerplate-admin/admin-menu.php');
-
-	// remove version info from head and feeds (http://digwp.com/2009/07/remove-wordpress-version-number/)
-		function boilerplate_complete_version_removal() {
-			return '';
+			wp_enqueue_script('modernizr',  get_bloginfo("stylesheet_directory") . "/js/libs/modernizr-2.0.6.min.js");
+			wp_enqueue_script($this->plugin_name . '-plugins', get_bloginfo("stylesheet_directory") . "/js/plugins.js", array('jquery'), false, true);
+			wp_enqueue_script($this->plugin_name . '-script', get_bloginfo("stylesheet_directory") . "/js/script.js", array('jquery', $this->plugin_name . '-plugins'), false, true);
+			
 		}
-		add_filter('the_generator', 'boilerplate_complete_version_removal');
-/*	End Boilerplate */
-
-// add category nicenames in body and post class
-	function boilerplate_category_id_class($classes) {
-	    global $post;
-	    foreach((get_the_category($post->ID)) as $category)
-	        $classes[] = $category->category_nicename;
-	        return $classes;
 	}
-	add_filter('post_class', 'boilerplate_category_id_class');
-	add_filter('body_class', 'boilerplate_category_id_class');
+}
 
-// change Search Form input type from "text" to "search" and add placeholder text
-	function boilerplate_search_form ( $form ) {
-		$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
-		<div><label class="screen-reader-text" for="s">' . __('Search for:') . '</label>
-		<input type="search" placeholder="Search for..." value="' . get_search_query() . '" name="s" id="s" />
-		<input type="submit" id="searchsubmit" value="'. esc_attr__('Search') .'" />
-		</div>
-		</form>';
-		return $form;
+add_action("init", create_function('', '$a = new zerox539se();'));
+
+
+
+/**
+ * Function to get the time in "relative format", i.e. xxx seconds/minutes/hours/... ago
+ * @param int $timestamp
+ * @return string 
+ * @since 1.0
+ */
+function relative_time ($timestamp) {
+	$difference = time() - $timestamp;
+	$periods = array("sec", "min", "hour", "day", "week","month", "year", "decade");
+	
+	$lengths = array("60","60","24","7","4.35","12","10");
+	
+	if ($difference > 0) { // this was in the past
+		$ending = "ago";
+	} else { // this was in the future
+		$difference = -$difference;
+		$ending = "to go";
 	}
-	add_filter( 'get_search_form', 'boilerplate_search_form' );
-
-// added per WP upload process request
-if ( function_exists( 'add_theme_support' ) ) {
-	add_theme_support( 'post-thumbnails' );
+	
+	for($j = 0; $difference >= $lengths[$j]; $j++)
+		$difference /= $lengths[$j];
+	
+	$difference = round($difference);
+	
+	if($difference != 1) 
+		$periods[$j] .= "s";
+	
+	$text = "$difference $periods[$j] $ending";
+	
+	return $text;
 }
-
-
-
-function compressHTML($html) {
-	
-	// remove new line 
-	$html = str_replace("\r\n", "", $html);
-	$html = str_replace("\n", "", $html);
-	
-	// remove tab
-	$html = str_replace("\t", "", $html);
-	
-	// remove unneccessary whitespace 
-	$html = preg_replace('/(\s){2,}/', ' ', $html);
-	
-	// remove HTML comments
-	$html = preg_replace('/<!--([a-z0-9#\-_\s<>&;.=\/"\'])+-->/i', '', $html);
-	
-	// remove unneccessary quotes
-	return preg_replace('/([a-z]+)=[\'"]([0-9a-z\-_]+)["\']/i', '$1=$2', $html);	
-}
-//ob_start("compressHTML");
-
-
-function twittify( $data , $postarr ) {
-	$ret = $data['post_content'];
-	$ret = preg_replace("#(^|[\n ])@([^ \"\t\n\r<]*)#ise", "'\\1<a href=\"http://www.twitter.com/\\2\" >@\\2</a>'", $ret);
-	$data['post_content'] = $ret;
-	return $data;
-}
-add_filter( 'wp_insert_post_data' , 'twittify' , '99' );
